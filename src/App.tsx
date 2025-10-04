@@ -294,6 +294,25 @@ const getPartAsset = (id: string) => {
   }
 };
 
+// Helper: choose an image for a level part so every level shows images 1..4
+const getImageForPart = (part: Part, idx: number) => {
+  // Prefer explicit pN ids or matching asset
+        if (part.id && /^p[1-4]$/.test(part.id)) {
+    const img = getPartAsset(part.id);
+    if (img) return img;
+  }
+
+  // If the part has a requiredOrder within 1..4, use that image index
+        if (part.requiredOrder && part.requiredOrder >= 1 && part.requiredOrder <= 4) {
+    const img = getPartAsset(`p${part.requiredOrder}`);
+    if (img) return img;
+  }
+
+  // Otherwise, map by index modulo 4
+        const fallbackIndex = (idx % 4) + 1;
+  return getPartAsset(`p${fallbackIndex}`) || '';
+};
+
 // Función para convertir el código de país (ISO 3166-1 alpha-2) a un emoji de bandera Unicode
 const getFlagEmoji = (countryCode?: string | null) => {
   if (!countryCode) return '🌎';
@@ -525,6 +544,20 @@ const App = () => {
     };
   }, [currentLevel]); // Dependencias: currentLevel
 
+  // Helper: map selected launch location to gravity
+  const getGravityForLocation = (loc: string) => {
+    switch ((loc || '').toLowerCase()) {
+      case 'moon': return 1.62;
+      case 'mars': return 3.71;
+      case 'earth':
+      default:
+        return EARTH_GRAVITY;
+    }
+  };
+
+  // Gravity chosen by the user (launch site)
+  const selectedGravity = getGravityForLocation(launchLocation);
+
   const totalPartsRequired = levelData.requiredParts.length;
   const isAssemblyComplete = assembledParts.length === totalPartsRequired;
 
@@ -532,9 +565,10 @@ const App = () => {
   const computedRequiredFuel = useMemo(() => {
     const massFromAssembled = assembledParts.length > 0 ? assembledParts.reduce((s, p) => s + (p.mass || 0), 0) : levelData.totalDryMass;
     const totalAstronautMass = levelData.totalAstronautMass;
-    const gravityFactor = levelData.gravity / EARTH_GRAVITY;
+    // use selectedGravity (based on chosen launchLocation) instead of level default gravity
+    const gravityFactor = selectedGravity / EARTH_GRAVITY;
     return Math.ceil((massFromAssembled + totalAstronautMass) * gravityFactor * FUEL_CALC_SCALE_FACTOR);
-  }, [assembledParts, levelData]);
+  }, [assembledParts, levelData, selectedGravity]);
 
   // Use the computed value when assembly exists or when in fuel phase, otherwise fallback to level default
   const requiredFuel = computedRequiredFuel ?? levelData.requiredFuel;
@@ -549,7 +583,7 @@ const App = () => {
     e.preventDefault();
     if (isLaunched || e.dataTransfer.getData("assembledIndex")) return;
     if (phase !== 1) return; // only allow assembling in phase 1
-    const partId = e.dataTransfer.getData("partId");
+                const partId = e.dataTransfer.getData("partId");
     const part = (levelData.requiredParts || []).find((p: Part) => p.id === partId) as Part | undefined;
     if (!part || assembledParts.find(p => p.id === part.id)) return;
 
@@ -756,7 +790,7 @@ const App = () => {
                 </div>
                 <div className={`flex flex-col items-center p-1 rounded ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-100'}`}>
                     <Atom className="w-4 h-4 text-red-400" />
-                    <span className="font-semibold text-xs">G: {levelData.gravity} m/s²</span>
+          <span className="font-semibold text-xs">G: {selectedGravity} m/s²</span>
                 </div>
                 <div className={`flex flex-col items-center p-1 rounded ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-100'}`}>
                     <Users className="w-4 h-4 text-green-400" />
@@ -817,7 +851,7 @@ const App = () => {
           // For the basic orbit show images stacked and centered with absolute positioning
           <div className="relative w-full h-full flex items-end justify-center" style={{ minHeight: 300 }}>
             {parts.map((part: Part, index: number) => {
-              const img = getPartAsset(part.id);
+              const img = getImageForPart(part, index);
               // scale offsets based on count
               const overlapPx = Math.max(6, 14 - parts.length * 2);
               const mid = (parts.length - 1) / 2;
@@ -826,11 +860,11 @@ const App = () => {
               const widthRem = `${10 - Math.min(4, parts.length) }rem`;
               if (img) {
                 return (
-                  <img
+                    <img
                     key={part.id + index}
                     data-part-img={part.id}
                     src={img}
-                    alt={part.name}
+                    alt={part.name || part.name_es}
                     draggable={!isLaunched}
                     onDragStart={(e) => handleAssemblyDragStart(e as any, index)}
                     onDrop={(e) => handleAssemblyDrop(e as any, index)}
@@ -867,7 +901,7 @@ const App = () => {
         ) : (
           <div className="flex flex-col-reverse items-center justify-start w-full">
             {parts.map((part: Part, index: number) => {
-              const img = getPartAsset(part.id);
+              const img = getImageForPart(part, index);
               const count = parts.length;
               // size down when there are many small parts, enlarge when few
               const size = count <= 2 ? 40 : count === 3 ? 30 : 24;
@@ -878,7 +912,7 @@ const App = () => {
                     key={part.id + index}
                     data-part-img={part.id}
                     src={img}
-                    alt={part.name}
+                    alt={part.name || part.name_es}
                     draggable={!isLaunched}
                     onDragStart={(e) => handleAssemblyDragStart(e as any, index)}
                     onDrop={(e) => handleAssemblyDrop(e as any, index)}
@@ -1158,35 +1192,54 @@ const App = () => {
             <h2 className={`text-2xl font-bold mb-4 text-indigo-400 border-b pb-2 ${tc.border}`}>
               {t('partsPanelTitle')} {levelData.level}
             </h2>
-            {/* Adapt parts panel layout to the number of required parts for the level */}
-            {(() => {
-              const n = levelData.requiredParts.length;
-              const cols = Math.min(3, Math.max(1, n));
-              return (
-                <div className={`grid grid-cols-1 sm:grid-cols-${cols} gap-4`}> 
-                  {levelData.requiredParts.map(part => {
-                    const imgSrc = getPartAsset(part.id);
-                    return imgSrc ? (
-                      <img
-                        key={part.id}
-                        data-part-img={part.id}
-                        src={imgSrc}
-                        alt={part.name}
-                        draggable={!assembledParts.find(p => p.id === part.id) && !isLaunched}
-                        onDragStart={(e) => handleDragStart(e as any, part.id)}
-                        onClick={() => setCurrentFact(part)}
-                        className={`w-full object-contain ${assembledParts.find(p => p.id === part.id) ? 'opacity-50 cursor-not-allowed' : 'cursor-grab hover:scale-105'}`}
-                        style={{ height: 120 }}
-                      />
-                    ) : (
-                      <div key={part.id} className="w-full h-28 flex items-center justify-center bg-gray-100 rounded-lg">
-                        <span>{part.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })()}
+            {/* Parts panel: level 1 should be 2x2 and show larger images; other levels adapt */}
+            {levelData.level === 1 ? (
+              <div className="grid grid-cols-2 gap-4">
+                {levelData.requiredParts.map((part, idx) => {
+                  const imgSrc = getImageForPart(part, idx);
+                  return imgSrc ? (
+                    <img
+                      key={part.id}
+                      data-part-img={part.id}
+                      src={imgSrc}
+                      alt={part.name || part.name_es}
+                      draggable={!assembledParts.find(p => p.id === part.id) && !isLaunched}
+                      onDragStart={(e) => handleDragStart(e as any, part.id)}
+                      onClick={() => setCurrentFact(part)}
+                      className={`w-full object-contain ${assembledParts.find(p => p.id === part.id) ? 'opacity-50 cursor-not-allowed' : 'cursor-grab hover:scale-105'}`}
+                      style={{ height: 180 }}
+                    />
+                  ) : (
+                    <div key={part.id} className="w-full h-36 flex items-center justify-center bg-gray-100 rounded-lg">
+                      <span>{part.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4`}> 
+                {levelData.requiredParts.map((part, idx) => {
+                  const imgSrc = getImageForPart(part, idx);
+                  return imgSrc ? (
+                    <img
+                      key={part.id}
+                      data-part-img={part.id}
+                      src={imgSrc}
+                      alt={part.name || part.name_es}
+                      draggable={!assembledParts.find(p => p.id === part.id) && !isLaunched}
+                      onDragStart={(e) => handleDragStart(e as any, part.id)}
+                      onClick={() => setCurrentFact(part)}
+                      className={`w-full object-contain ${assembledParts.find(p => p.id === part.id) ? 'opacity-50 cursor-not-allowed' : 'cursor-grab hover:scale-105'}`}
+                      style={{ height: 120 }}
+                    />
+                  ) : (
+                    <div key={part.id} className="w-full h-28 flex items-center justify-center bg-gray-100 rounded-lg">
+                      <span>{part.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Columna 2: Área de Ensamblaje, Combustible y Controles (Drop Area) */}
