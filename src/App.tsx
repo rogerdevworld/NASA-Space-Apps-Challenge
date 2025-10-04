@@ -108,10 +108,151 @@ const translations: any = {
         'El ensamblaje más complejo: ¡prepara un cohete para llevar humanos a la Luna!',
         '¡El desafío final! Crea el cohete multi-etapa más complejo para un viaje de larga duración a Marte.'
     ],
+  assembleStep: 'Ensamblar',
+  fuelStep: 'Combustible',
+  launchStep: 'Lanzamiento',
   },
   en: {
-    // (Omitiendo traducción en inglés por brevedad, manteniendo el foco en el español y la lógica)
+    title: 'Learn to Build Rockets',
+    mission: 'Mission',
+    objective: 'Objective',
+    coins: 'Coins',
+    partsPanelTitle: 'Parts for Mission',
+    requiredOrder: 'Required Order',
+    assemblyTitle: 'Assembly for',
+    dragToStart: 'Drag a part from the left panel to start the assembly.',
+    currentOrder: 'Current Order',
+    undo: 'Undo Last',
+    launch: 'LAUNCH!',
+    missingParts: 'Missing Parts',
+    reattempt: 'Retry',
+    nextLevel: 'Next Level',
+    educationalDataTitle: 'Educational Data (NASA)',
+    dragForFact: 'Drag a part onto the assembly to learn its scientific fact and real-world function.',
+    locationStatus: 'Your Astronaut & Mission',
+    detectedLocation: 'Detected Location: %s, %s',
+    simulatedWeather: 'Simulated Local Weather: %s %s',
+    // Fuel and progress texts
+    gasNeeded: 'Fuel Required',
+    enterGas: 'Enter Fuel (Units)',
+    progressTitle: 'Mission Progress',
+    partsProgress: 'Parts Assembly',
+    fuelStatus: 'Fuel Status',
+    fuelSufficient: 'Sufficient',
+    fuelInsufficient: 'Insufficient',
+    // Formula texts
+    formulaTitle: 'Fuel Formula (Inspired by Tsiolkovsky)',
+    formulaExplanation: 'The fuel required depends on the total mass of your rocket, the destination gravity, and the crew mass. Heavier rockets and higher gravity require more fuel.',
+    // Keep LaTeX raw for the KaTeX renderer
+    formulaLatex: 'U_{fuel} = \\lceil (M_{\\text{dry}} + M_{\\text{crew}}) \\times \\frac{G_{\\text{dest}}}{9.8} \\times 15 \\rceil',
+    formulaLegend: '**$M_{\\text{dry}}$**: Dry mass (parts). **$M_{\\text{crew}}$**: Crew mass. **$G_{\\text{dest}}$**: Destination gravity.',
+    partStatus: {
+      placed: 'Part Placed!',
+      alreadyAssembled: 'Info for %s.',
+      removed: 'Part Removed.',
+      reordered: 'Part Reordered.',
+    },
+    facts: {
+      placed: 'Part **%s** placed at position #%d. You can reorder parts by dragging them in the rocket!',
+      complete: 'Assembly complete. Check fuel and order before launching.',
+      removed: 'You removed the part **%s**. The rocket now has %d parts.',
+      reordered: 'Part **%s** reordered successfully. The bottom-to-top order matters for launch!',
+    },
+    launchMessages: {
+      success: 'SUCCESS! Perfect launch to %s. You earned %d coins. Keep learning!',
+      wrongOrder: 'WARNING! The part order is incorrect. Flight was unstable. Try again!',
+      missing: 'FAIL! Essential parts are missing. Complete the assembly.',
+      insufficientGas: 'CRITICAL FAIL! Insufficient fuel. You need at least %d units to reach %s.',
+      allCompleted: 'You completed all levels! Resetting to Basic Mission.',
+    },
+    levelNames: [
+      'Basic Mission (4 Parts)',
+      'Low Earth Orbit Mission',
+      'Geostationary Satellite Delivery (GEO)',
+      'Crewed Moon Mission',
+      'Mars Mission'
+    ],
+    levelDescriptions: [
+      'Simple 4-piece assembly to reach a low orbit.',
+      'Assemble a rocket to reach low Earth orbit.',
+      'Add a payload to reach geostationary orbit.',
+      'Complex assembly to carry humans to the Moon.',
+      'Final challenge to build a multi-stage rocket for Mars.'
+    ],
+    assembleStep: 'Assemble',
+    fuelStep: 'Fuel',
+    launchStep: 'Launch',
   },
+  fr: {
+    title: 'Apprenez à Construire des Fusées',
+    mission: 'Mission',
+    objective: 'Objectif',
+    coins: 'Pièces',
+    partsPanelTitle: 'Pièces pour la Mission',
+    requiredOrder: 'Ordre Requis',
+    assemblyTitle: 'Assemblage pour',
+    dragToStart: 'Faites glisser une pièce depuis le panneau gauche pour commencer l\'assemblage.',
+    currentOrder: 'Ordre Actuel',
+    undo: 'Annuler',
+    launch: 'LANCER!',
+    missingParts: 'Pièces Manquantes',
+    reattempt: 'Réessayer',
+    nextLevel: 'Niveau Suivant',
+    educationalDataTitle: 'Données Éducatives (NASA)',
+    dragForFact: 'Faites glisser une pièce sur l\'assemblage pour connaître son fait scientifique et sa fonction réelle.',
+    gasNeeded: 'Carburant Requis',
+    enterGas: 'Entrez le Carburant (Unités)',
+    progressTitle: 'Progrès de la Mission',
+    partsProgress: 'Assemblage des Pièces',
+    fuelStatus: 'État du Carburant',
+    fuelSufficient: 'Suffisant',
+    fuelInsufficient: 'Insuffisant',
+    formulaTitle: 'Formule de Carburant (Inspirée de Tsiolkovsky)',
+    formulaExplanation: 'Le carburant nécessaire dépend de la masse totale de votre fusée, de la gravité de la planète de destination et du poids de l\'équipage.',
+    assembleStep: 'Assembler',
+    fuelStep: 'Carburant',
+    launchStep: 'Lancement',
+  },
+  ca: {
+    title: 'Aprèn a Construir Coets',
+    mission: 'Missió',
+    objective: 'Objectiu',
+    coins: 'Monedes',
+    partsPanelTitle: 'Peces per a la Missió',
+    requiredOrder: 'Ordre Requerit',
+    assemblyTitle: 'Muntatge per a',
+    dragToStart: 'Arrossega una peça del panell esquerre per començar el muntatge.',
+    currentOrder: 'Ordre Actual',
+    undo: 'Desfer Últim',
+    launch: 'LLANÇAR!',
+    missingParts: 'Falten Peces',
+    reattempt: 'Torna-ho a intentar',
+    nextLevel: 'Següent Nivell',
+    educationalDataTitle: 'Dades Educatives (NASA)',
+    dragForFact: 'Arrossega una peça al muntatge per conèixer el seu fet científic i funció real.',
+    locationStatus: 'El teu Astronauta i Missió',
+    detectedLocation: 'Ubicació Detectada: %s, %s',
+    simulatedWeather: 'Clima Local Simulat: %s %s',
+    gasNeeded: 'Combustible Requerit',
+    enterGas: 'Introdueix Combustible (Unitats)',
+    progressTitle: 'Progrés de la Missió',
+    partsProgress: 'Muntatge de Peces',
+    fuelStatus: 'Estat del Combustible',
+    fuelSufficient: 'Suficient',
+    fuelInsufficient: 'Insuficient',
+    formulaTitle: 'Fórmula de Combustible (Inspirada en Tsiolkovsky)',
+    formulaExplanation: 'El combustible necessari depèn de la massa seca del teu coet, la gravetat de destinació i el pes de la tripulació.',
+    formulaLatex: 'U_{fuel} = \\lceil (M_{\text{seco}} + M_{\text{ast}}) \\times \\frac{G_{\text{destino}}}{9.8} \\times 15 \\rceil',
+    formulaLegend: '**$M_{\text{seco}}$**: Massa seca. **$M_{\text{ast}}$**: Massa tripulació. **$G_{\text{destino}}$**: Gravetat destinació.',
+    partStatus: { placed: 'Peces Col·locada!', alreadyAssembled: 'Informació de %s.', removed: 'Peca Retirada.', reordered: 'Peca Reordenada.' },
+    facts: { placed: 'Peca **%s** col·locada a la posició #%d.', complete: 'Muntatge complet.', removed: 'Has retirat la peca **%s**.', reordered: 'Peca **%s** reordenada.' },
+    launchMessages: { success: 'ÈXIT! Llançament perfecte a %s. Has guanyat %d monedes.', wrongOrder: 'AVÍS! Ordre incorrecte.', missing: 'FALLO! Falten peces.', insufficientGas: 'FALLO CRÍTIC! Combustible insuficient.', allCompleted: 'Has completat tots els nivells!' },
+    levelNames: ['Missió Bàsica (4 Peces)', 'Missió a Òrbita Terrestre', 'Missió de Lliurament de Satèl·lit (GEO)', 'Viatge Tripulat a la Lluna', 'Missió a Mart'],
+    levelDescriptions: ['Muntatge senzill amb 4 peces.', 'Muntatge per a òrbita terrestre baixa.', 'Afegeix un carregament per arribar a GEO.', 'Muntatge complex per portar humans a la Lluna.', 'Desafiament final per a Mart.']
+    ,assembleStep: 'Muntar',
+    fuelStep: 'Combustible',
+    launchStep: 'Llançament'
+  }
 };
 
 // Función para obtener texto traducido (soporta placeholders)
@@ -129,6 +270,28 @@ const getText = (lang: string, key: string, ...args: any[]): string => {
     const value = args[argIndex++];
     return value !== undefined ? String(value) : _match;
   });
+};
+
+// Helper: map part id to asset image (Vite import via new URL)
+const getPartAsset = (id: string) => {
+  try {
+    switch (id) {
+      case 'engine': return new URL('./assets/Ares_5_Main_Rocket.png', import.meta.url).href;
+      case 'p1': return new URL('./assets/1.png', import.meta.url).href;
+      case 'p2': return new URL('./assets/2.png', import.meta.url).href;
+      case 'p3': return new URL('./assets/3.png', import.meta.url).href;
+      case 'p4': return new URL('./assets/4.png', import.meta.url).href;
+      case 'body': return new URL('./assets/Ares_5_Secondary_Rocket.png', import.meta.url).href;
+      case 'nose': return new URL('./assets/Ares_5_Tertiary_Rocket.png', import.meta.url).href;
+      case 'payload': return new URL('./assets/Ares_5_Payload_Rocket.png', import.meta.url).href;
+      case 'booster': return new URL('./assets/SaturnV_Secondary_Rocket.png', import.meta.url).href;
+      case 'crew': return new URL('./assets/SaturnV_Tertiary_Rocket.png', import.meta.url).href;
+      case 'command': return new URL('./assets/SaturnV_Main_Rocket.png', import.meta.url).href;
+      default: return '';
+    }
+  } catch (e) {
+    return '';
+  }
 };
 
 // Función para convertir el código de país (ISO 3166-1 alpha-2) a un emoji de bandera Unicode
@@ -160,13 +323,15 @@ const BASE_COMPONENTS = [
 const GAME_LEVELS = [
   { 
     level: 1, 
-    target_es: 'Órbita Terrestre', target_en: 'Earth Orbit',
-    planet_es: 'Tierra', planet_en: 'Earth', gravity: EARTH_GRAVITY, astronauts: 0, // Gravedad terrestre (9.81 m/s^2)
+    target_es: 'Órbita Básica', target_en: 'Basic Orbit',
+    planet_es: 'Tierra', planet_en: 'Earth', gravity: EARTH_GRAVITY, astronauts: 0,
     requiredParts: [
-        { ...BASE_COMPONENTS[0], requiredOrder: 1 }, 
-        { ...BASE_COMPONENTS[2], requiredOrder: 2 } 
+      { id: 'p1', name_es: 'Pieza 1', name_en: 'Part 1', requiredOrder: 1, color: 'bg-blue-500', mass: 100, svg: '' },
+      { id: 'p2', name_es: 'Pieza 2', name_en: 'Part 2', requiredOrder: 2, color: 'bg-green-500', mass: 100, svg: '' },
+      { id: 'p3', name_es: 'Pieza 3', name_en: 'Part 3', requiredOrder: 3, color: 'bg-yellow-500', mass: 100, svg: '' },
+      { id: 'p4', name_es: 'Pieza 4', name_en: 'Part 4', requiredOrder: 4, color: 'bg-red-500', mass: 100, svg: '' },
     ],
-    reward: 10,
+    reward: 5,
   },
   { 
     level: 2, 
@@ -234,6 +399,9 @@ const App = () => {
   const [isLaunched, setIsLaunched] = useState<boolean>(false);
   const [launchMessage, setLaunchMessage] = useState<{ text: string; success: boolean }>({ text: '', success: false });
   const [score, setScore] = useState<number>(0);
+  // Phase: 1 = Assemble, 2 = Fuel, 3 = Launch
+  const [phase, setPhase] = useState<number>(1);
+  const [launchLocation, setLaunchLocation] = useState<string>('Earth');
   
   // Estados para Dark/Light Mode e Idioma
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -255,10 +423,10 @@ const App = () => {
     if (savedTheme === 'dark' || savedTheme === 'light') {
       setTheme(savedTheme as 'dark' | 'light');
     }
-    const browserLang = navigator.language.split('-')[0];
-    if (['es', 'en'].includes(browserLang)) {
-        setLanguage(browserLang);
-    }
+  const browserLang = navigator.language.split('-')[0];
+  if (['es', 'en', 'ca'].includes(browserLang)) {
+    setLanguage(browserLang);
+  }
   }, []);
 
   // Efecto para renderizar KaTeX (Reemplaza el script problemático)
@@ -359,7 +527,17 @@ const App = () => {
 
   const totalPartsRequired = levelData.requiredParts.length;
   const isAssemblyComplete = assembledParts.length === totalPartsRequired;
-  const requiredFuel = levelData.requiredFuel;
+
+  // Compute required fuel from assembled parts when available (user requested: base fuel on part-1 assembly)
+  const computedRequiredFuel = useMemo(() => {
+    const massFromAssembled = assembledParts.length > 0 ? assembledParts.reduce((s, p) => s + (p.mass || 0), 0) : levelData.totalDryMass;
+    const totalAstronautMass = levelData.totalAstronautMass;
+    const gravityFactor = levelData.gravity / EARTH_GRAVITY;
+    return Math.ceil((massFromAssembled + totalAstronautMass) * gravityFactor * FUEL_CALC_SCALE_FACTOR);
+  }, [assembledParts, levelData]);
+
+  // Use the computed value when assembly exists or when in fuel phase, otherwise fallback to level default
+  const requiredFuel = computedRequiredFuel ?? levelData.requiredFuel;
   const isFuelSufficient = playerFuel >= requiredFuel;
 
   const correctlyOrderedParts = useMemo(() => {
@@ -370,6 +548,7 @@ const App = () => {
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (isLaunched || e.dataTransfer.getData("assembledIndex")) return;
+    if (phase !== 1) return; // only allow assembling in phase 1
     const partId = e.dataTransfer.getData("partId");
     const part = (levelData.requiredParts || []).find((p: Part) => p.id === partId) as Part | undefined;
     if (!part || assembledParts.find(p => p.id === part.id)) return;
@@ -388,6 +567,16 @@ const App = () => {
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, partId: string) => {
     e.dataTransfer.setData("partId", partId);
+    // If there is an image in the panel with this part id, use it as drag preview
+    try {
+      const img = document.querySelector(`img[data-part-img="${partId}"]`) as HTMLImageElement | null;
+      if (img) {
+        const rect = img.getBoundingClientRect();
+        e.dataTransfer.setDragImage(img, rect.width / 2, rect.height / 2);
+      }
+    } catch (err) {
+      // ignore
+    }
   };
   
   const handleDragOver = (e: React.DragEvent) => {
@@ -397,6 +586,16 @@ const App = () => {
   const handleAssemblyDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     e.stopPropagation();
     e.dataTransfer.setData("assembledIndex", String(index));
+    try {
+      // prefer the actual image inside the assembly item as drag preview
+      const img = (e.currentTarget as HTMLElement).querySelector('img') as HTMLImageElement | null;
+      if (img) {
+        const rect = img.getBoundingClientRect();
+        e.dataTransfer.setDragImage(img, rect.width / 2, rect.height / 2);
+      }
+    } catch (err) {
+      // ignore
+    }
   };
   
   const handleAssemblyDrop = useCallback((e: React.DragEvent<HTMLDivElement>, targetIndex: number) => {
@@ -494,7 +693,7 @@ const App = () => {
 
   // --- COMPONENTES AUXILIARES ---
 
-  const AstronautInfo: React.FC = () => {
+  const AstronautInfo: React.FC<{ launchLocation: string }> = ({ launchLocation }) => {
     const flag = getFlagEmoji(countryCode);
     const LocationIcon = UserCheck;
     const WeatherIcon = (localWeather?.iconComponent as IconComponent) || CloudSun;
@@ -514,7 +713,7 @@ const App = () => {
                 </div>
             </div>
 
-            {localWeather && (
+            {localWeather && launchLocation === 'Earth' && (
                 <div className={`flex items-center space-x-2 p-2 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'}`}>
                     <WeatherIcon className={`w-6 h-6 ${tc.icon}`} />
           <div className="text-sm">
@@ -526,16 +725,28 @@ const App = () => {
     );
   };
   
-  const MissionProgress: React.FC<{ partsCount: number; totalParts: number; fuelLoaded: number; fuelRequired: number; themeClasses: any; theme: 'dark' | 'light'; t: (k: string, ...a: any[]) => string; levelData: any }> = ({ partsCount, totalParts, fuelLoaded, fuelRequired, themeClasses, theme, t, levelData }) => {
+  const MissionProgress: React.FC<{ partsCount: number; totalParts: number; fuelLoaded: number; fuelRequired: number; themeClasses: any; theme: 'dark' | 'light'; t: (k: string, ...a: any[]) => string; levelData: any; phase: number; launchLocation: string; setLaunchLocation: (s:string) => void }> = ({ partsCount, totalParts, fuelLoaded, fuelRequired, themeClasses, theme, t, levelData, phase, launchLocation, setLaunchLocation }) => {
     const assemblyPercentage = totalParts > 0 ? (partsCount / totalParts) * 100 : 0;
     const fuelStatus = fuelLoaded >= fuelRequired;
     const tc = themeClasses[theme];
 
-    return (
-        <div className={`p-4 rounded-xl shadow-lg border-2 ${tc.cardBg} ${theme === 'dark' ? 'border-purple-700' : 'border-purple-300'} mb-6`}>
-            <h3 className={`text-xl font-bold mb-4 flex items-center ${theme === 'dark' ? 'text-purple-400' : 'text-purple-700'}`}>
+  return (
+    <div className={`p-4 rounded-xl shadow-lg border-2 ${tc.cardBg} ${theme === 'dark' ? 'border-purple-700' : 'border-purple-300'} mb-6`}>
+      {/* Phase progress moved into MissionProgress */}
+      <PhaseProgress phase={phase} />
+            <div className="flex items-center justify-between mb-2">
+              <h3 className={`text-xl font-bold flex items-center ${theme === 'dark' ? 'text-purple-400' : 'text-purple-700'}`}>
                 <TrendingUp className="w-5 h-5 mr-2" /> {t('progressTitle')}
-            </h3>
+              </h3>
+              <div>
+                <label className="text-sm mr-2">Launch Site:</label>
+                <select value={launchLocation} onChange={(e) => setLaunchLocation(e.target.value)} className="px-2 py-1 rounded">
+                  <option value="Earth">Earth</option>
+                  <option value="Moon">Moon</option>
+                  <option value="Mars">Mars</option>
+                </select>
+              </div>
+            </div>
 
             {/* Datos de la Misión (Planeta, Gravedad, Tripulación) */}
             <div className={`grid grid-cols-3 gap-2 text-sm mb-4 p-2 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'}`}>
@@ -595,33 +806,167 @@ const App = () => {
         {t('partsPanelTitle')}: {parts.length} / {totalPartsRequired}
       </div>
       
-  <div className="flex flex-col-reverse items-center justify-start w-full transition-all duration-500" style={{ minHeight: '300px' }}>
+  <div className="w-full transition-all duration-500 relative" style={{ minHeight: '300px' }}>
         {parts.length === 0 && (
           <p className={`text-lg my-12 select-none animate-pulse ${tc.text}`}>
             {t('dragToStart')}
           </p>
         )}
-  {parts.map((part: Part, index: number) => {
-            return (
-              <div 
-                key={part.id + index} 
-                draggable={!isLaunched}
-                onDragStart={(e) => handleAssemblyDragStart(e, index)}
-                onDrop={(e) => handleAssemblyDrop(e, index)}
-                onDragOver={handleDragOver}
-                className={`w-full md:w-3/5 lg:w-1/2 h-24 flex items-center justify-center text-white font-bold relative transition-all duration-500 transform ${part.color} border-4 ${theme === 'dark' ? 'border-gray-900' : 'border-gray-700'} shadow-xl mb-[-4px] rounded-lg cursor-move`}
-                style={{ zIndex: part.requiredOrder }}
-              >
-                <svg viewBox="0 0 24 24" className="w-16 h-16 mr-2" dangerouslySetInnerHTML={{ __html: part.svg || '' }} />
-                
-                <span className="text-sm text-shadow select-none absolute top-1 right-2 opacity-80">{part.name}</span>
-                <span className="absolute bottom-1 right-2 text-xs opacity-70">{t('currentOrder')} #{index + 1}</span>
-              </div>
-            );
-        })}
+
+        {levelData.level === 1 ? (
+          // For the basic orbit show images stacked and centered with absolute positioning
+          <div className="relative w-full h-full flex items-end justify-center" style={{ minHeight: 300 }}>
+            {parts.map((part: Part, index: number) => {
+              const img = getPartAsset(part.id);
+              // scale offsets based on count
+              const overlapPx = Math.max(6, 14 - parts.length * 2);
+              const mid = (parts.length - 1) / 2;
+              const baseOffset = 16 + (4 - parts.length) * 8; // fewer parts sit higher
+              const offset = Math.round((index - mid) * overlapPx + baseOffset);
+              const widthRem = `${10 - Math.min(4, parts.length) }rem`;
+              if (img) {
+                return (
+                  <img
+                    key={part.id + index}
+                    data-part-img={part.id}
+                    src={img}
+                    alt={part.name}
+                    draggable={!isLaunched}
+                    onDragStart={(e) => handleAssemblyDragStart(e as any, index)}
+                    onDrop={(e) => handleAssemblyDrop(e as any, index)}
+                    onDragOver={handleDragOver}
+                    className="object-contain transition-all duration-300"
+                      style={{
+                        position: 'absolute',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        bottom: `${offset}px`,
+                        zIndex: 100 + index,
+                        width: widthRem,
+                        height: 'auto'
+                      }}
+                  />
+                );
+              }
+              // fallback
+              return (
+                <div
+                  key={part.id + index}
+                  draggable={!isLaunched}
+                  onDragStart={(e) => handleAssemblyDragStart(e, index)}
+                  onDrop={(e) => handleAssemblyDrop(e, index)}
+                  onDragOver={handleDragOver}
+                  className={`w-full md:w-3/5 lg:w-1/2 h-28 flex items-center justify-center text-white font-bold relative transition-all duration-500 transform ${part.color} border-4 ${theme === 'dark' ? 'border-gray-900' : 'border-gray-700'} shadow-xl mb-[-4px] rounded-lg cursor-move`}
+                  style={{ zIndex: part.requiredOrder }}
+                >
+                  <svg viewBox="0 0 24 24" className="w-16 h-16 mr-2" dangerouslySetInnerHTML={{ __html: part.svg || '' }} />
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex flex-col-reverse items-center justify-start w-full">
+            {parts.map((part: Part, index: number) => {
+              const img = getPartAsset(part.id);
+              const count = parts.length;
+              // size down when there are many small parts, enlarge when few
+              const size = count <= 2 ? 40 : count === 3 ? 30 : 24;
+              const sizePx = `${size}px`;
+              if (img) {
+                return (
+                  <img
+                    key={part.id + index}
+                    data-part-img={part.id}
+                    src={img}
+                    alt={part.name}
+                    draggable={!isLaunched}
+                    onDragStart={(e) => handleAssemblyDragStart(e as any, index)}
+                    onDrop={(e) => handleAssemblyDrop(e as any, index)}
+                    onDragOver={handleDragOver}
+                    className="object-contain mr-2 transition-all duration-500"
+                    style={{ zIndex: part.requiredOrder, width: sizePx, height: sizePx }}
+                  />
+                );
+              }
+              return (
+                <div 
+                  key={part.id + index} 
+                  draggable={!isLaunched}
+                  onDragStart={(e) => handleAssemblyDragStart(e, index)}
+                  onDrop={(e) => handleAssemblyDrop(e, index)}
+                  onDragOver={handleDragOver}
+                  className={`w-full md:w-3/5 lg:w-1/2 h-28 flex items-center justify-center text-white font-bold relative transition-all duration-500 transform ${part.color} border-4 ${theme === 'dark' ? 'border-gray-900' : 'border-gray-700'} shadow-xl mb-[-4px] rounded-lg cursor-move`}
+                  style={{ zIndex: part.requiredOrder }}
+                >
+                  <svg viewBox="0 0 24 24" className="w-16 h-16 mr-2" dangerouslySetInnerHTML={{ __html: part.svg || '' }} />
+                  <span className="text-sm text-shadow select-none absolute top-1 right-2 opacity-80">{part.name}</span>
+                  <span className="absolute bottom-1 right-2 text-xs opacity-70">{t('currentOrder')} #{index + 1}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
+
+  // Improved 3-step horizontal progress bar
+  const PhaseProgress: React.FC<{ phase: number }> = ({ phase }) => {
+    const steps = [t('assembleStep') || 'Assemble', t('fuelStep') || 'Fuel', t('launchStep') || 'Launch'];
+    const pct = ((phase - 1) / Math.max(1, steps.length - 1)) * 100;
+    return (
+      <div className="w-full max-w-3xl mx-auto mb-4 px-4">
+        <div className="relative h-14 flex items-center">
+          {/* subtle background line */}
+          <div className="absolute left-6 right-6 top-1/2 transform -translate-y-1/2 h-1 bg-gray-200 dark:bg-gray-700 rounded" />
+
+          {/* animated gradient fill */}
+          <div
+            className="absolute left-6 top-1/2 transform -translate-y-1/2 h-1 rounded transition-all duration-700 ease-out"
+            style={{ width: `calc(${pct}% )`, background: 'linear-gradient(90deg,#34d399,#10b981)' }}
+            aria-hidden
+          />
+
+          {steps.map((label, idx) => {
+            const leftPct = (idx / Math.max(1, steps.length - 1)) * 100;
+            const done = idx + 1 < phase || (idx + 1 === phase && phase === steps.length && phase > 1 && playerFuel >= requiredFuel);
+            const active = idx + 1 === phase;
+            return (
+              <div
+                key={label}
+                style={{ left: `calc(${leftPct}% )` }}
+                className="absolute transform -translate-x-1/2 flex flex-col items-center select-none"
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 shadow-sm transition-transform duration-300 ${done ? 'bg-green-500 text-white border-green-600 scale-105' : active ? 'bg-white text-indigo-600 border-indigo-400 scale-105' : 'bg-white text-gray-700 border-gray-300'}`}>
+                  <span className="text-sm">{done ? '✓' : idx + 1}</span>
+                </div>
+                <span className="text-xs mt-2 text-center w-28 truncate text-gray-600 dark:text-gray-300">{label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  // Auto-advance: when assembly is complete and correctly ordered, go to Fuel phase
+  useEffect(() => {
+    if (phase !== 1) return;
+    if (assembledParts.length !== totalPartsRequired) return;
+    const correct = assembledParts.every((p, i) => p.id === (correctlyOrderedParts[i]?.id));
+    if (correct) {
+      setPhase(2);
+      setCurrentFact({ status: 'info', fact: t('facts', 'complete') } as FactData);
+    }
+  }, [assembledParts, phase, totalPartsRequired, correctlyOrderedParts, t]);
+
+  // Auto-advance: when fuel is sufficient in phase 2, go to Launch phase
+  useEffect(() => {
+    if (phase !== 2) return;
+    if (playerFuel >= requiredFuel) {
+      setPhase(3);
+    }
+  }, [playerFuel, phase, requiredFuel]);
 
   const InfoDisplay: React.FC<{ factData: FactData | null }> = ({ factData }) => {
     if (!factData) {
@@ -700,30 +1045,27 @@ const App = () => {
   );
   
   const FuelFormulaCard: React.FC = () => (
-    <div className={`p-4 rounded-xl shadow-lg border-2 mt-4 ${tc.cardBg} ${theme === 'dark' ? 'border-yellow-700' : 'border-yellow-300'}`}>
-        <h3 className={`text-lg font-bold mb-3 flex items-center ${theme === 'dark' ? 'text-yellow-400' : 'text-yellow-700'}`}>
-            <Sigma className="w-5 h-5 mr-2" /> {t('formulaTitle')}
-        </h3>
-        <p className={`mb-2 text-sm ${tc.text}`}>{t('formulaExplanation')}</p>
-        
-        {/* Fórmula: Se usa la referencia y se le pasa el texto LaTeX que luego será renderizado por useEffect */}
-    <div 
-      ref={formulaContainerRef}
-      className={`bg-gray-700 p-3 rounded-lg text-center my-3 text-white overflow-x-auto ${theme === 'light' ? 'bg-gray-200' : 'bg-gray-700'}`}
-    >
-      {t('formulaLatex')}
-    </div>
-        <p className={`text-xs ${tc.text}`} dangerouslySetInnerHTML={{ __html: t('formulaLegend') }}/>
+  <div className={`p-4 rounded-xl shadow-lg border-2 mt-4 ${tc.cardBg} ${theme === 'dark' ? 'border-yellow-700' : 'border-yellow-300'}`}>
+    <h3 className={`text-lg font-bold mb-3 flex items-center ${theme === 'dark' ? 'text-yellow-400' : 'text-yellow-700'}`}>
+      <Sigma className="w-5 h-5 mr-2" /> Fuel Formula (Inspired by Tsiolkovsky)
+    </h3>
+    <p className={`mb-2 text-sm ${tc.text}`}>The fuel required depends on the total mass of your rocket, the destination gravity, and the crew mass. Heavier rockets and higher gravity require more fuel.</p>
 
-        <div className="mt-4 pt-2 border-t border-dashed border-gray-600">
-            <h4 className="text-sm font-semibold text-indigo-400 mb-1">Masa de la Misión:</h4>
-            <ul className={`text-xs ${tc.text} space-y-1`}>
-        <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Masa Seca (Piezas - M_seco):</span> {levelData.totalDryMass} Unidades</li>
-        <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Masa Tripulación (M_ast - {levelData.astronauts} Px):</span> {levelData.totalAstronautMass} Unidades</li>
-        <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Gravedad Destino (G_destino - {levelData.targetPlanet}):</span> {levelData.gravity} m/s²</li>
-            </ul>
-        </div>
+    <div className={`bg-gray-800 p-3 rounded-lg my-3 text-white overflow-x-auto`}>
+      <pre className="whitespace-pre-wrap text-sm">{`U_{fuel} = \lceil (M_{\text{dry}} + M_{\text{crew}}) \times \frac{G_{\text{dest}}}{9.8} \times 15 \rceil`}</pre>
     </div>
+
+  <p className={`text-xs ${tc.text}`}>M_dry: Dry mass (parts). M_crew: Crew mass. G_dest: Destination gravity.</p>
+
+    <div className="mt-4 pt-2 border-t border-dashed border-gray-600">
+      <h4 className="text-sm font-semibold text-indigo-400 mb-1">Masa de la Misión:</h4>
+      <ul className={`text-xs ${tc.text} space-y-1`}>
+    <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Masa Seca (Piezas - M_seco):</span> {levelData.totalDryMass} Unidades</li>
+    <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Masa Tripulación (M_ast - {levelData.astronauts} Px):</span> {levelData.totalAstronautMass} Unidades</li>
+    <li><span className="font-mono bg-indigo-900/50 p-1 rounded">Gravedad Destino (G_destino - {levelData.targetPlanet}):</span> {levelData.gravity} m/s²</li>
+      </ul>
+    </div>
+  </div>
   );
 
 
@@ -749,7 +1091,7 @@ const App = () => {
         <header className={`text-center py-6 border-b mb-8 ${tc.border}`}>
             {/* Controles de Tema, Idioma y Score */}
             <div className="flex justify-between items-center mb-4">
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 items-center">
                     <button
                         onClick={toggleTheme}
                         className={`p-2 rounded-full transition-colors duration-300 shadow-md ${theme === 'dark' ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300' : 'bg-gray-800 text-white hover:bg-gray-700'}`}
@@ -757,7 +1099,22 @@ const App = () => {
                     >
                         {theme === 'dark' ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
                     </button>
-                    {/* El toggle de idioma se mantiene deshabilitado para enfocarse en la versión en español */}
+
+                    {/* Language selector: ES / EN / CA */}
+                    <div className="flex items-center space-x-2">
+                      {['en','fr','ca','es'].map(code => (
+                        <button
+                          key={code}
+                          onClick={() => setLanguage(code)}
+                          title={code.toUpperCase()}
+                          aria-label={code.toUpperCase()}
+                          aria-pressed={language === code}
+                          className={`p-2 rounded-full transition-colors duration-300 shadow-md flex items-center justify-center w-9 h-9 ${language === code ? (theme === 'dark' ? 'bg-yellow-400 text-gray-900' : 'bg-indigo-600 text-white') : (theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-800')}`}
+                        >
+                          <span className="text-sm font-bold">{code.toUpperCase()}</span>
+                        </button>
+                      ))}
+                    </div>
                 </div>
 
                 <div className={`flex items-center font-bold text-yellow-300 p-1 px-3 rounded-full shadow-md ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-700 text-yellow-200'}`}>
@@ -774,21 +1131,24 @@ const App = () => {
         </header>
         
         {/* Componente de Astronauta/Clima */}
-        <div className="mb-6">
-            <AstronautInfo />
+    <div className="mb-6">
+      <AstronautInfo launchLocation={launchLocation} />
         </div>
         
         {/* Barra de Progreso de la Misión */}
-        <MissionProgress 
-            partsCount={assembledParts.length} 
-            totalParts={totalPartsRequired} 
-            fuelLoaded={playerFuel}
-            fuelRequired={requiredFuel}
-            themeClasses={themeClasses}
-            theme={theme}
-            t={t}
-            levelData={levelData} 
-        />
+    <MissionProgress 
+      partsCount={assembledParts.length} 
+      totalParts={totalPartsRequired} 
+      fuelLoaded={playerFuel}
+      fuelRequired={requiredFuel}
+      themeClasses={themeClasses}
+      theme={theme}
+      t={t}
+      levelData={levelData}
+  phase={phase}
+      launchLocation={launchLocation}
+      setLaunchLocation={setLaunchLocation}
+    />
 
 
   <main className="grid grid-cols-1 lg:grid-cols-3 gap-8 flex-1 min-h-0">
@@ -798,25 +1158,35 @@ const App = () => {
             <h2 className={`text-2xl font-bold mb-4 text-indigo-400 border-b pb-2 ${tc.border}`}>
               {t('partsPanelTitle')} {levelData.level}
             </h2>
-            <div className="space-y-4">
-              {levelData.requiredParts.map(part => (
-                <div
-                  key={part.id}
-                  draggable={!assembledParts.find(p => p.id === part.id) && !isLaunched}
-                  onDragStart={(e) => handleDragStart(e, part.id)}
-                  onClick={() => setCurrentFact(part)}
-                  className={`p-4 rounded-xl flex items-center justify-between shadow-lg cursor-grab transition duration-300 ease-in-out border-2 
-                    ${assembledParts.find(p => p.id === part.id) 
-                      ? 'bg-green-700/50 text-green-300 border-green-600 cursor-not-allowed'
-                      : `${theme === 'dark' ? 'bg-gray-700 hover:bg-indigo-700 border-gray-600' : 'bg-gray-100 hover:bg-indigo-200 border-gray-300 text-gray-900'}`
-                    } 
-                    ${isLaunched ? 'opacity-50' : ''}`}
-                >
-                  <span className="text-lg font-semibold">{part.name}</span>
-                  <span className="text-sm opacity-80">{t('requiredOrder')}: #{part.requiredOrder} (Masa: {part.mass})</span>
+            {/* Adapt parts panel layout to the number of required parts for the level */}
+            {(() => {
+              const n = levelData.requiredParts.length;
+              const cols = Math.min(3, Math.max(1, n));
+              return (
+                <div className={`grid grid-cols-1 sm:grid-cols-${cols} gap-4`}> 
+                  {levelData.requiredParts.map(part => {
+                    const imgSrc = getPartAsset(part.id);
+                    return imgSrc ? (
+                      <img
+                        key={part.id}
+                        data-part-img={part.id}
+                        src={imgSrc}
+                        alt={part.name}
+                        draggable={!assembledParts.find(p => p.id === part.id) && !isLaunched}
+                        onDragStart={(e) => handleDragStart(e as any, part.id)}
+                        onClick={() => setCurrentFact(part)}
+                        className={`w-full object-contain ${assembledParts.find(p => p.id === part.id) ? 'opacity-50 cursor-not-allowed' : 'cursor-grab hover:scale-105'}`}
+                        style={{ height: 120 }}
+                      />
+                    ) : (
+                      <div key={part.id} className="w-full h-28 flex items-center justify-center bg-gray-100 rounded-lg">
+                        <span>{part.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </div>
 
           {/* Columna 2: Área de Ensamblaje, Combustible y Controles (Drop Area) */}
@@ -824,15 +1194,20 @@ const App = () => {
             <h2 className={`text-2xl font-bold text-center text-blue-400 border-b pb-2 ${tc.border}`}>
               {t('assemblyTitle')} {levelData.target}
             </h2>
+
+            {/* Phase progress handled above MissionProgress */}
             <div className="flex-1 min-h-0">
               <RocketDisplay parts={assembledParts} />
             </div>
             
-            {/* Control de Combustible */}
-            <FuelControl />
-
-            {/* Panel de Fórmula */}
-            <FuelFormulaCard />
+            {/* Control de Combustible - only in phase 2 */}
+            {phase === 2 && (
+              <>
+                <FuelControl />
+                {/* Panel de Fórmula - moved to only show in Fuel phase */}
+                <FuelFormulaCard />
+              </>
+            )}
             
             {/* Botones de Control */}
             <div className="flex justify-center mt-6 space-x-4">
@@ -845,36 +1220,44 @@ const App = () => {
                     </button>
                 )}
                 
-                {isLaunched ? (
+                {phase === 3 ? (
+                  // Launch phase
+                  isLaunched ? (
+                    // After launch: show nextLevel if success else reattempt
                     launchMessage.success && currentLevel < GAME_LEVELS.length ? (
-                        <button
-                            onClick={() => resetGame(true)}
-                            className="p-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full text-lg shadow-lg transition transform hover:scale-[1.03] flex items-center"
-                        >
-                            <Play className="w-6 h-6 mr-2" /> {t('nextLevel')}
-                        </button>
+                      <button
+                        onClick={() => resetGame(true)}
+                        className="p-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full text-lg shadow-lg transition transform hover:scale-[1.03] flex items-center"
+                      >
+                        <Play className="w-6 h-6 mr-2" /> {t('nextLevel')}
+                      </button>
                     ) : (
-                        <button
-                            onClick={() => resetGame(false)}
-                            className="p-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-lg shadow-lg transition transform hover:scale-[1.03] flex items-center"
-                        >
-                            <RotateCcw className="w-6 h-6 mr-2" /> {t('reattempt')}
-                        </button>
+                      <button
+                        onClick={() => resetGame(false)}
+                        className="p-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full text-lg shadow-lg transition transform hover:scale-[1.03] flex items-center"
+                      >
+                        <RotateCcw className="w-6 h-6 mr-2" /> {t('reattempt')}
+                      </button>
                     )
-                ) : (
+                  ) : (
+                    // Not launched yet: allow launch if ready
                     <button
-                        onClick={handleLaunch}
-                        disabled={!isAssemblyComplete || playerFuel <= 0}
-                        className={`p-4 font-bold rounded-full text-xl shadow-2xl transition duration-300 transform flex items-center 
-                            ${isAssemblyComplete && playerFuel > 0
-                                ? 'bg-green-500 hover:bg-green-600 text-gray-900 hover:scale-[1.05]' 
-                                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                            }`}
+                      onClick={handleLaunch}
+                      disabled={!(isAssemblyComplete && playerFuel > 0)}
+                      className={`p-4 font-bold rounded-full text-xl shadow-2xl transition duration-300 transform flex items-center ${ (isAssemblyComplete && playerFuel > 0) ? 'bg-green-500 hover:bg-green-600 text-gray-900 hover:scale-[1.05]' : 'bg-gray-600 text-gray-400 cursor-not-allowed' }`}
                     >
-                        <Rocket className="w-6 h-6 mr-2" /> {isAssemblyComplete ? t('launch') : t('missingParts')}
+                      <Rocket className="w-6 h-6 mr-2" /> {isAssemblyComplete ? t('launch') : t('missingParts')}
                     </button>
+                  )
+                ) : (
+                  // Not in launch phase: show disabled launch button as placeholder
+                  <button className="p-4 font-bold rounded-full text-xl shadow-2xl bg-gray-500 text-gray-200 cursor-not-allowed" disabled>
+                    <Rocket className="w-6 h-6 mr-2" /> {t('launch')}
+                  </button>
                 )}
             </div>
+
+      {/* Phase navigation removed: auto-advances when assembly/fuel conditions are met */}
 
             {/* Mensaje de Lanzamiento (Resultado) */}
             {launchMessage.text && (
