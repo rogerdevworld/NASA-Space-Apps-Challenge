@@ -287,6 +287,9 @@ const getPartAsset = (id: string) => {
       case 'booster': return new URL('./assets/SaturnV_Secondary_Rocket.png', import.meta.url).href;
       case 'crew': return new URL('./assets/SaturnV_Tertiary_Rocket.png', import.meta.url).href;
       case 'command': return new URL('./assets/SaturnV_Main_Rocket.png', import.meta.url).href;
+      case 'h': return new URL('./assets/h.jpg', import.meta.url).href;
+      case 'n': return new URL('./assets/n.jpg', import.meta.url).href;
+      case 'm': return new URL('./assets/m.webp', import.meta.url).href;
       default: return '';
     }
   } catch (e) {
@@ -591,9 +594,9 @@ const App = () => {
     );
 
     // placeholders using the p1..p4 images
-    const imgApollo = getPartAsset('p1');
-    const imgISS = getPartAsset('p2');
-    const imgFuture = getPartAsset('p3');
+    const imgApollo = getPartAsset('h');
+    const imgISS = getPartAsset('n');
+    const imgFuture = getPartAsset('m');
 
     return (
       <div className="min-h-screen flex items-center justify-center p-0 bg-gradient-to-br from-indigo-900 to-sky-700">
