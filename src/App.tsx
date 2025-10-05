@@ -409,9 +409,37 @@ const GAME_LEVELS = [
   }
 ];
 
+// Extra historical/present levels (not part of main campaign list)
+const EXTRA_LEVELS: any[] = [
+  {
+    level: 5,
+    target_es: 'Luna (Apollo 11)', target_en: 'Moon (Apollo 11)',
+    planet_es: 'Luna', planet_en: 'Moon', gravity: 1.62, astronauts: 3,
+    requiredParts: [
+      { id: 'p1', name_es: 'Etapa Principal', requiredOrder: 1, mass: 300 },
+      { id: 'p2', name_es: 'Tanque de Combustible', requiredOrder: 2, mass: 400 },
+      { id: 'p3', name_es: 'Módulo de Comando', requiredOrder: 3, mass: 200 },
+      { id: 'p4', name_es: 'Cono/Sistema de Reentrada', requiredOrder: 4, mass: 150 },
+    ],
+    reward: 100,
+  },
+  {
+    level: 6,
+    target_es: 'ISS Resupply', target_en: 'ISS Resupply',
+    planet_es: 'Tierra', planet_en: 'Earth', gravity: EARTH_GRAVITY, astronauts: 0,
+    requiredParts: [
+      { id: 'p1', name_es: 'Carguero', requiredOrder: 1, mass: 200 },
+      { id: 'p2', name_es: 'Etapa de Empuje', requiredOrder: 2, mass: 250 },
+      { id: 'p3', name_es: 'Módulo de Estiba', requiredOrder: 3, mass: 150 },
+    ],
+    reward: 20,
+  }
+];
+
 // --- COMPONENTE PRINCIPAL ---
 
 const App = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(true);
   const [currentLevel, setCurrentLevel] = useState<number>(1);
   const [assembledParts, setAssembledParts] = useState<Part[]>([]);
   const [currentFact, setCurrentFact] = useState<FactData | null>(null);
@@ -543,6 +571,57 @@ const App = () => {
     })) as Part[],
     };
   }, [currentLevel]); // Dependencias: currentLevel
+
+  // Start / Mode selection screen
+  const StartScreen: React.FC = () => {
+    const ModeCard: React.FC<{ title: string; subtitle: string; image: string; onSelect: () => void }> = ({ title, subtitle, image, onSelect }) => (
+      <div onClick={onSelect} className="relative cursor-pointer overflow-hidden shadow-lg hover:scale-102 transition-transform duration-200 bg-black">
+        {/* make card fill viewport height on md+ so image is very large */}
+        <div className="w-full h-64 md:h-screen flex">
+          {image && <img src={image} alt={title} className="object-cover w-full h-full" />}
+        </div>
+        {/* overlay text at bottom, hidden by default, revealed on hover */}
+        <div className="absolute inset-0 flex items-end justify-center pointer-events-none">
+          <div className="w-full bg-black/60 text-white p-6 text-center opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+            <h3 className="text-2xl font-bold">{title}</h3>
+            <p className="text-sm opacity-80 mt-1">{subtitle}</p>
+          </div>
+        </div>
+      </div>
+    );
+
+    // placeholders using the p1..p4 images
+    const imgApollo = getPartAsset('p1');
+    const imgISS = getPartAsset('p2');
+    const imgFuture = getPartAsset('p3');
+
+    return (
+      <div className="min-h-screen flex items-center justify-center p-0 bg-gradient-to-br from-indigo-900 to-sky-700">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
+          <ModeCard title="Historia" subtitle="Revive misiones icónicas (Apollo 11)" image={imgApollo} onSelect={() => {
+            // load Apollo level
+            setShowMenu(false);
+            setCurrentLevel(EXTRA_LEVELS[0].level);
+            // replace assembled parts and reset phase/state
+            setAssembledParts([]);
+            setPhase(1);
+          }} />
+          <ModeCard title="Presente" subtitle="Misiones activas ahora (ISS resupply)" image={imgISS} onSelect={() => {
+            setShowMenu(false);
+            setCurrentLevel(EXTRA_LEVELS[1].level);
+            setAssembledParts([]);
+            setPhase(1);
+          }} />
+          <ModeCard title="Futuro" subtitle="Explora y construye misiones" image={imgFuture} onSelect={() => {
+            setShowMenu(false);
+            setCurrentLevel(1);
+            setAssembledParts([]);
+            setPhase(1);
+          }} />
+        </div>
+      </div>
+    );
+  };
 
   // Helper: map selected launch location to gravity
   const getGravityForLocation = (loc: string) => {
@@ -1104,6 +1183,8 @@ const App = () => {
 
 
   // --- RENDER PRINCIPAL ---
+
+  if (showMenu) return <StartScreen />;
 
   return (
     <div className={`min-h-screen p-4 font-sans antialiased ${tc.bg} flex flex-col`}> 
